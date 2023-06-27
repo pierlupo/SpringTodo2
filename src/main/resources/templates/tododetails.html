@@ -9,21 +9,23 @@
 <body>
 <header th:insert="~{fragments/header.html :: header}"> </header>
 <div class="containerDetails">
-    <div class="card">
-        <div class="card-header" th:text="${todo?.title}">
+    <div class="detailBox">
+        <div class="headerBox" th:text="${todo?.title}">
+            <hr>
         </div>
         <div class="card-body">
 
             <p th:text="${todo?.description}"></p>
             <p th:text="${todo?.dueDate}"></p>
             <p th:text="${todo?.priority}"></p>
-
-            <h5 class="card-title" th:text="${todo?.status}"></h5>
+<!--            <div th:text="${todo?.getImage()}"></div>-->
+            <h3 class="card-title" th:text="${todo?.status}"></h3>
 <!--            <p class="card-text" th:text="${todo?.todoDetail}"></p>-->
 <!--            <p class="card-text" th:text="${todo?.categories}"></p>-->
         </div>
 <!--        <div class="card-footer text-body-secondary" th:text="${todo?.personne}">-->
-            <a href="#" class="btn btn-primary" th:href="${'/todo'}" >Retour</a>
+
+            <a href="#" class="linkBack" th:href="${'/todo'}" >Retour</a>
         </div>
     </div>
 </div>

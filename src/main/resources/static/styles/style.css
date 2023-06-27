@@ -26,13 +26,23 @@ body{
     width:60rem;
 }
 
-table,
+
 td {
     border: 1px solid #333;
     font-size: 1em;
     font-family: Cantarell, Arial, sans-serif;
+    height: 30px;
+    background: lightslategray;
+    border-radius: 1rem;
 }
-
+table {
+    border: none;
+    font-size: 1em;
+    font-family: Cantarell, Arial, sans-serif;
+    height: 30px;
+    /*background: lightslategray;*/
+    border-radius: 1rem;
+}
 thead,
 tfoot {
     font-size: 1em;
@@ -88,6 +98,8 @@ input{
 
 tr{
     text-align: center;
+    height: 40px;
+
 }
 
 
@@ -230,6 +242,31 @@ td:nth-child(6){
     align-items: center;
     border: 1px solid;
 
+}
+
+.detailBox{
+    font-family: Cantarell, Arial, sans-serif;
+    background-color: var(--black);
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+    color:var(--white);
+    border-radius: 1rem;
+    text-align: center;
+    margin-top:200px;
+}
+
+.headerBox{
+    font-size: 22px;
+    text-transform: capitalize;
+}
+
+.linkBack{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
 }
 .inputlog{
     margin-bottom:20px;
