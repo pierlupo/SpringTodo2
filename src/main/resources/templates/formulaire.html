@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire</title>
+  <head th:insert="~{fragments/head.html :: head}"></head>
+  <meta name="description" content="formulaire">
+</head>
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+<div class="formContainer">
+ <form th:action="@{/todo/submitForm}" method="post" enctype="multipart/form-data" th:object="${todo}">
+    <div class="formul">
+
+      <label class="labelForm" for="title">Title</label>
+      <input type="text" th:field="*{title}" class="inputForm" id="title" placeholder="ex : une tâche"/>
+
+      <label class="labelForm" for="description">Description</label>
+      <textarea id="description" class="" th:field="*{description}"></textarea>
+
+      <label class="labelForm" for="dueDate">DueDate</label>
+      <input type="date" class="inputForm" id="dueDate" th:field="*{dueDate}"
+             th:attr="value=${#dates.format(todo.dueDate, 'yyyy-MM-dd')}"/>
+
+      <label class="labelForm" for="priority">Priority</label>
+      <input type="text" class="inputForm" id="priority" th:field="*{priority}" placeholder=""/>
+
+      <label class="labelForm" for="image">Upload d'image</label>
+      <input type="file" name="images"  id="image" class="inputupload"/>
+
+      <input type="hidden" th:field="*{id}" class="inputForm" id="id"/>
+      <button type="submit" class="btnForm">Validation</button>
+    </div>
+  </form>
+<!--  <form class="container" th:action="@{/todo/submitForm}" method="post" enctype="multipart/form-data">-->
+<!--  <div class="formul">-->
+<!--      <label class="labelForm" for="title">Titre</label>-->
+<!--      <input type="text" name="title" id="title"  class="inputForm" placeholder="title"/>-->
+
+<!--      <label class="labelForm" for="desc">Description</label>-->
+<!--      <input type="text" name="description" id="desc" class="inputForm" placeholder="description"/>-->
+
+<!--      <label class="labelForm" for="dueDate">DueDate</label>-->
+<!--      <input type="text" class="inputForm" id="dueDate" placeholder="yyyy-MM-dd"/>-->
+
+<!--      <label class="labelForm" for="priority">Priority</label>-->
+<!--      <input type="text" class="inputForm" id="priority" placeholder=""/>-->
+
+<!--      <input type="file" name="images"  class="inputForm"  />-->
+
+<!--      <button class="btnForm" type="submit">valider</button>-->
+<!--  </div>-->
+<!--  </form>-->
+</div>
+</body>
+</html>

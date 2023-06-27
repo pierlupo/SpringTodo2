@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link th:href="@{/styles/normalize.css}" rel="stylesheet" />
+    <link th:href="@{/styles/style.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="~{fragments/header.html :: header}" id="mainHeader"></header>
+<div class="todoContainer">
+    <h1 class="titolo">Todos</h1>
+    <div>
+        <table class = "table1" >
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>DueDate</th>
+                <th>Priority</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.title}"></td>
+                <td th:text="${todo.description}"></td>
+                <td th:text="${todo.dueDate}"></td>
+                <td th:text="${todo.priority}"></td>
+                <td th:text="${todo.status}"></td>
+                <td ><a th:href="@{/todo/edit/{id}(id=${todo.id})}" class="btn">| edit |</a><a class="btn" th:href="@{/todo/delete/{id}(id=${todo.id})}"> delete |</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="conteneur">
+            <form th:action="@{/todo/search}" method="get">
+                <input type="text" name="todoId" placeholder="ID de la todo">
+                <button type="submit" class="btn">Rechercher</button>
+            </form>
+            <hr>
+            <div class="linkForm">
+                <a th:href="@{/todo/form}" class="btnAdd">| Ajouter une todo |</a>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+</body>
+</html>

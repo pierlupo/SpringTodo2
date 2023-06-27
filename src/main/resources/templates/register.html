@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+  <head th:insert="~{fragments/head.html :: head}"></head>
+</head>
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+<form th:action="@{/user/sign-in-submit}" method="post" class="loginForm">
+  <div>
+    <input type="text" name="name" placeholder="pseudo" class="inputlog" />
+  </div>
+    <input type="text" name="email" placeholder="email" class="inputlog" />
+  </div>
+  <div>
+    <input type="password" name="password" placeholder="mot de passe" class="inputlog" />
+  </div>
+  <div>
+    <button class="btn btnlog">valider</button>
+  </div>
+</form>
+</body>
+</html>
