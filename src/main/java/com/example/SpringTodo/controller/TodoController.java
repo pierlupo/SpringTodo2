@@ -27,15 +27,17 @@ public class TodoController {
     private TodoService _todoService;
 
     @Autowired
-    private HttpServletResponse response;
+    private HttpServletResponse _response;
 
     @Autowired
     private UserTodoService _userTodoService;
 
 
-
     @GetMapping("/delete/{id}")
     public boolean delete(@PathVariable Integer id) throws Exception {
+        if(!_userTodoService.isLogged()) {
+            _response.sendRedirect("/user/login");
+        }
         try {
             return _todoService.deleteTodo(id);
         }catch (Exception ex) {
@@ -55,8 +57,17 @@ public class TodoController {
         return todo;
     }
 
-    @GetMapping("/edit/{id}")
-    public String editTodoForm(@PathVariable Integer id, Model model) {
+//    @GetMapping("/all")
+//    public Todo getAllTodos() {
+//        List<Todo> todos = _todoService.findAll();
+//        return (Todo) todos;
+//    }
+
+    @GetMapping("/todo/edit/{id}")
+    public String editTodoForm(@PathVariable Integer id, Model model) throws IOException {
+        if(!_userTodoService.isLogged()) {
+            _response.sendRedirect("/user/login");
+        }
         Todo to = _todoService.getTodoById(id);
         System.out.println("to " + to);
         model.addAttribute("todo", to);
@@ -65,14 +76,20 @@ public class TodoController {
 
 
     @GetMapping("/search")
-    public String searchTodoById(@RequestParam("todoId") Integer todoId, Model model) {
+    public String searchTodoById(@RequestParam("todoId") Integer todoId, Model model) throws IOException {
+        if(!_userTodoService.isLogged()) {
+            _response.sendRedirect("/user/login");
+        }
         Todo todo = _todoService.getTodoById(todoId);
         model.addAttribute("todo", todo);
         return "tododetails";
     }
 
     @GetMapping("/formupload")
-    public ModelAndView form(){
+    public ModelAndView form() throws IOException {
+        if(!_userTodoService.isLogged()) {
+            _response.sendRedirect("/user/login");
+        }
         ModelAndView vm = new ModelAndView("form-upload");
         return vm;
     }
@@ -80,7 +97,7 @@ public class TodoController {
     @GetMapping("/form")
     public ModelAndView getForm() throws IOException {
         if(!_userTodoService.isLogged()) {
-            response.sendRedirect("/user/login");
+            _response.sendRedirect("/user/login");
         }
         ModelAndView mv = new ModelAndView("formulaire");
         mv.addObject("todo", new Todo());
@@ -119,7 +136,10 @@ public class TodoController {
     }
 
     @GetMapping("/detail/{id}")
-    public ModelAndView getDetail(@PathVariable Integer id) {
+    public ModelAndView getDetail(@PathVariable Integer id) throws IOException {
+        if(!_userTodoService.isLogged()) {
+            _response.sendRedirect("/user/login");
+        }
         ModelAndView mv = new ModelAndView("tododetails");
         mv.addObject("todo", _todoService.getTodoById(id));
         mv.addObject("isLogged", _userTodoService.isLogged());
@@ -130,12 +150,12 @@ public class TodoController {
     @PostMapping("/submitForm")
     public ModelAndView submitForm(@RequestParam String title, @RequestParam String description, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dueDate, @RequestParam int priority, @RequestParam("images") List<MultipartFile> images, HttpServletResponse response) throws IOException {
         if(!_userTodoService.isLogged()) {
-            response.sendRedirect("/user/login");
+            _response.sendRedirect("/user/login");
         }
         ModelAndView mv = new ModelAndView("formulaire");
         try {
            Todo todo = _todoService.createTodo(title, description, dueDate, priority, images);
-            response.sendRedirect("/home");
+            _response.sendRedirect("/todo");
         }catch (Exception ex) {
             mv.addObject("message", "erreur lors de l'ajout");
             mv.addObject("todo", new Todo());
@@ -147,7 +167,7 @@ public class TodoController {
 //    @PostMapping("submitImage")
 //    public String submitImage(@RequestParam("image") MultipartFile image) throws IOException {
 //        if(!_userTodoService.isLogged()) {
-//            response.sendRedirect("/todo/login");
+//            _response.sendRedirect("/todo/login");
 //        }
 //        Path destinationFile = Paths.get(location).resolve(Paths.get(image.getOriginalFilename())).toAbsolutePath();
 //        InputStream stream = image.getInputStream();

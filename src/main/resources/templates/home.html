@@ -34,7 +34,9 @@
         </table>
         <div class="conteneur">
             <form th:action="@{/todo/search}" method="get">
-                <input type="text" name="todoId" placeholder="ID de la todo">
+                <label>
+                    <input type="text" name="todoId" placeholder="ID de la todo">
+                </label>
                 <button type="submit" class="btn">Rechercher</button>
             </form>
             <hr>

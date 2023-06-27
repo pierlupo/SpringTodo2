@@ -255,6 +255,7 @@ td:nth-child(6){
     font-family: Cantarell, Arial, sans-serif;
     color:var(--white);
     text-transform: uppercase;
+    transition: all 1s ease-out;
 }
 
 .titolo:hover{
