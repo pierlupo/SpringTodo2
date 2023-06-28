@@ -14,18 +14,18 @@
             <hr>
         </div>
         <div class="card-body">
-
             <p th:text="${todo?.description}"></p>
             <p th:text="${todo?.dueDate}"></p>
             <p th:text="${todo?.priority}"></p>
-<!--            <div th:text="${todo?.getImage()}"></div>-->
-            <h3 class="card-title" th:text="${todo?.status}"></h3>
-<!--            <p class="card-text" th:text="${todo?.todoDetail}"></p>-->
-<!--            <p class="card-text" th:text="${todo?.categories}"></p>-->
+<!--            <div>-->
+<!--                <img th:each="image : ${todo.getImages()}" th:src="@{/{img}(img=${image.getUrl()})}" />-->
+<!--            </div>-->
+            <h3 class="status" th:text="${todo?.status == false  ? 'Not Done' : 'Done'}" th:class="${todo.status == false} ? 'red' : 'green'"></h3>
         </div>
-<!--        <div class="card-footer text-body-secondary" th:text="${todo?.personne}">-->
-
-            <a href="#" class="linkBack" th:href="${'/todo'}" >Retour</a>
+        <div>
+            <a class="changeStatus" th:href="@{/todo/update/{id}(id=${todo.getId()})}">Change status</a>
+        </div>
+            <a href="#" class="linkBack" th:href="${'/todo'}">Retour</a>
         </div>
     </div>
 </div>

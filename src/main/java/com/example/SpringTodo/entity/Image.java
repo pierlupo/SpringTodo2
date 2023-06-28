@@ -12,7 +12,7 @@ public class Image {
 
     private String url;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Todo todo;
 
 }

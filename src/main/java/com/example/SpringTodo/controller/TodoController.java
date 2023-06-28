@@ -38,16 +38,18 @@ public class TodoController {
         if(!_userTodoService.isLogged()) {
             _response.sendRedirect("/user/login");
         }
-        try {
-            return _todoService.deleteTodo(id);
-        }catch (Exception ex) {
-            throw ex;
-        }
+        return _todoService.deleteTodo(id);
+    }
+
+    @GetMapping("/all")
+    public List<Todo> getTodos() {
+        List<Todo> todos = _todoService.getAllTodos();
+        return todos;
     }
 
     @GetMapping("/{id}")
     public Todo getTodoById(@PathVariable Integer id) {
-        List<Todo> todos = _todoService.findAll();
+        List<Todo> todos = _todoService.getAllTodos();
         Todo todo = new Todo();
         for (Todo t : todos) {
             if (t.getId() == id) {
@@ -63,7 +65,7 @@ public class TodoController {
 //        return (Todo) todos;
 //    }
 
-    @GetMapping("/todo/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editTodoForm(@PathVariable Integer id, Model model) throws IOException {
         if(!_userTodoService.isLogged()) {
             _response.sendRedirect("/user/login");
@@ -115,8 +117,19 @@ public class TodoController {
 //        return liste;
 //    }
 
+
+    @GetMapping("/update/{id}")
+    public boolean updateStatus(@PathVariable Integer id) throws Exception {
+        try {
+            return _todoService.updateStatus(id);
+        }catch (Exception ex) {
+            throw ex;
+        }
+    }
+
     @GetMapping("{status}")
     public List<Todo> get(@PathVariable boolean status) {
+
         return _todoService.getByStatus(status);
     }
 

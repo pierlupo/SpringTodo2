@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -35,11 +33,10 @@ public class Todo {
 
     private boolean status;
 
-    @OneToMany(mappedBy = "todo", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "todo", fetch = FetchType.LAZY)
     private List<Image> images;
 
     public Todo() {
-
     }
 
     public Todo(String title, String description, Date dueDate, int priority) {
@@ -49,7 +46,6 @@ public class Todo {
         this.setDueDate(dueDate);
         this.setPriority(priority);
         this.setStatus(false);
-
     }
 
     public Todo(String title, String description) {

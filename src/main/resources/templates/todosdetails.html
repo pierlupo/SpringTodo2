@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo's Details</title>
+    <head th:insert="~{fragments/head.html :: head}"></head>
+</head>
+<body>
+<header th:insert="~{fragments/header.html :: header}"> </header>
+<div class="containerDetails">
+  <div class="detailBox">
+    <div class="headerBox" th:text="${todo?.title}">
+      <hr>
+    </div>
+    <div class="card-body">
+<div th:each="todo : ${todos}">
+      <p th:text="${todo?.description}"></p>
+      <p th:text="${todo?.dueDate}"></p>
+      <p th:text="${todo?.priority}"></p>
+      <!--            <div th:text="${todo?.getImage()}"></div>-->
+      <h3 class="status" th:text="${todo?.status}" th:class="${todo.status == false} ? 'red' : 'green'"></h3>
+      <!--            <p class="card-text" th:text="${todo?.todoDetail}"></p>-->
+    </div>
+    <a href="#" class="linkBack" th:href="${'/todo'}" >Retour</a>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

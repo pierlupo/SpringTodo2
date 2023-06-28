@@ -84,16 +84,29 @@ public class TodoService {
         }
         throw new Exception("Aucune todo avec cet id");
     }
+
+    public boolean updateStatus(int id) throws Exception {
+        Todo todo = _todoRepository.findById(id);
+        if(todo != null) {
+            todo.setStatus(!todo.isStatus());
+            _todoRepository.update(todo);
+            return true;
+        }
+        throw new Exception("Aucun todo avec cet id");
+    }
+
     public List<Todo> getByStatus(boolean status) {
+
         return _todoRepository.findByStatus(status);
     }
 
     public Todo getTodoById(int id) {
+
         return _todoRepository.findById(id);
     }
 
 
-    public List<Todo> findAll() {
+    public List<Todo> getAllTodos() {
         Query<Todo> todoQuery = _session.createQuery("from Todo");
         return todoQuery.list();    }
 }

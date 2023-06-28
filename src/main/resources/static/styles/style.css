@@ -9,7 +9,7 @@
     --gray: #253237;
     --grayish: #5C6B73;
     --timber: #dbd7d2;
-
+    --yellow: #FFFF00;
     box-sizing: border-box;
 }
 *, *:before, *:after{
@@ -49,6 +49,8 @@ tfoot {
     background-color: #333;
     color: #fff;
     font-family: Cantarell, Arial, sans-serif;
+    text-transform: uppercase;
+
 }
 
 .content h1{
@@ -58,6 +60,8 @@ tfoot {
     font-weight: normal;
     font-size: 2em;
     text-align: center;
+    text-transform: uppercase;
+
 }
 
 .content h1:hover{
@@ -81,7 +85,43 @@ table{
     letter-spacing: 0.2rem;
 }
 
-.btn{
+/*boutons et liens*/
+.btnSearch{
+    font-family: Cantarell, Arial, sans-serif;
+    cursor:pointer;
+    border-radius: 1rem;
+    border: none;
+    height: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: var(--black);
+    color: var(--white);
+    display: inline-block;
+    width: 130px;
+}
+
+.btnSearch:hover{
+    background-color: var(--white);
+    color: var(--black);
+    transition: all 0.5s ease-out;
+}
+
+.btnEdit{
+    font-family: Cantarell, Arial, sans-serif;
+    cursor:pointer;
+    border-radius: 1rem;
+    border: none;
+    height: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-table;
+    width:60px;
+}
+.btnEdit:hover{
+    color: var(--yellow);
+    transition: all 0.5s ease-out;
+}
+.btnDelete{
     font-family: Cantarell, Arial, sans-serif;
     cursor:pointer;
     border-radius: 1rem;
@@ -90,10 +130,94 @@ table{
     text-transform: uppercase;
     font-weight: bold;
 }
+
+.btnDelete:hover{
+    color: var(--red);
+    transition: all 0.5s ease-out;
+}
+
+.btnForm{
+    padding: 10px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+
+.linkAdd{
+    text-decoration: none;
+    font-family: Cantarell, Arial, sans-serif;
+    /*font-size: 1.2em;*/
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    font-weight:bold;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 10px;
+    text-transform: uppercase;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.linkAdd:hover{
+    background-color: var(--white);
+    color: var(--black);
+    transition: all 0.5s ease-out;
+}
+
+.linkBack{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.linkForm{
+    text-align: center;
+}
+
+.btnlog{
+    font-family: Cantarell, Arial, sans-serif;
+    cursor:pointer;
+    border-radius: 1rem;
+    border: none;
+    height: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 250px;
+    background-color: var(--white);
+    color: var(--black);
+}
+.btnupload{
+    font-family: Cantarell, Arial, sans-serif;
+    cursor:pointer;
+    border-radius: 1rem;
+    border: none;
+    height: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 250px;
+    background-color: var(--white);
+    color: var(--black);
+}
+/*fin boutons et liens*/
+
+.status{
+    font-weight: normal;
+}
+
+.changeStatus{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
 input{
     border: none;
     border-radius: 1rem;
-    height: 30px;
+    height: 40px;
 }
 
 tr{
@@ -145,6 +269,8 @@ tr{
     font-size: 1.5em;
     display: block;
     margin: 10px;
+    text-transform: uppercase;
+
 }
 #mainNav a:hover{
     color: var(--black);
@@ -177,20 +303,6 @@ td a {
     padding: 20px;
 }
 
-.btnForm{
-    padding: 10px;
-    margin-top: 10px;
-    cursor:pointer;
-}
-
-.btnAdd{
-    text-decoration: none;
-    color:var(--black);
-    font-family: Cantarell, Arial, sans-serif;
-    font-size: 1.2em;
-    font-weight:bold;
-}
-
 .labelForm{
     font-family: Cantarell, Arial, sans-serif;
     font-size: 1em;
@@ -204,13 +316,12 @@ td a {
     padding: 10px;
 }
 
-.linkForm{
-    text-align: center;
-}
-
 td:nth-child(6){
     background-color: var(--black);
+}
 
+td:nth-child(7){
+    background-color: var(--black);
 }
 
 .loginForm{
@@ -228,6 +339,7 @@ td:nth-child(6){
     border: 1px solid;
 
 }
+
 .uploadform{
     font-family: Cantarell, Arial, sans-serif;
     margin-right: auto;
@@ -263,11 +375,6 @@ td:nth-child(6){
     text-transform: capitalize;
 }
 
-.linkBack{
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-}
 .inputlog{
     margin-bottom:20px;
     width: 250px;
@@ -279,14 +386,6 @@ td:nth-child(6){
     width: 275px;
 }
 
-.btnlog{
-    width: 250px
-}
-.btnupload{
-    width: 250px
-}
-
-
 .titolo{
     text-align: center;
     font-family: Cantarell, Arial, sans-serif;
@@ -297,4 +396,21 @@ td:nth-child(6){
 
 .titolo:hover{
     color:var(--black);
+}
+
+.title{
+    text-transform: uppercase;
+
+}
+
+.green{
+    color: var(--green);
+}
+
+.red{
+    color:var(--red);
+}
+
+hr{
+    border-bottom-color: var(--black);
 }
