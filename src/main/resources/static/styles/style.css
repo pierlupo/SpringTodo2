@@ -214,6 +214,11 @@ table{
     font-weight: bolder;
 }
 
+.divChangeStatus{
+    margin: 10px;
+    padding: 20px;
+}
+
 input{
     border: none;
     border-radius: 1rem;

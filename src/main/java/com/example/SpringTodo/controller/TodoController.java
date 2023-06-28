@@ -33,16 +33,18 @@ public class TodoController {
     private UserTodoService _userTodoService;
 
 
-    @GetMapping("/delete/{id}")
-    public boolean delete(@PathVariable Integer id) throws Exception {
+
+    //    @GetMapping("/all")
+    //    public Todo getAllTodos() {
+    //        List<Todo> todos = _todoService.findAll();
+    //        return (Todo) todos;
+    //    }
+
+    @GetMapping("/all")
+    public List<Todo> getTodos() throws IOException {
         if(!_userTodoService.isLogged()) {
             _response.sendRedirect("/user/login");
         }
-        return _todoService.deleteTodo(id);
-    }
-
-    @GetMapping("/all")
-    public List<Todo> getTodos() {
         List<Todo> todos = _todoService.getAllTodos();
         return todos;
     }
@@ -59,11 +61,13 @@ public class TodoController {
         return todo;
     }
 
-//    @GetMapping("/all")
-//    public Todo getAllTodos() {
-//        List<Todo> todos = _todoService.findAll();
-//        return (Todo) todos;
-//    }
+    @GetMapping("/delete/{id}")
+    public boolean delete(@PathVariable Integer id) throws Exception {
+        if(!_userTodoService.isLogged()) {
+            _response.sendRedirect("/user/login");
+        }
+        return _todoService.deleteTodo(id);
+    }
 
     @GetMapping("/edit/{id}")
     public String editTodoForm(@PathVariable Integer id, Model model) throws IOException {

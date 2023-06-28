@@ -22,7 +22,7 @@
 <!--            </div>-->
             <h3 class="status" th:text="${todo?.status == false  ? 'Not Done' : 'Done'}" th:class="${todo.status == false} ? 'red' : 'green'"></h3>
         </div>
-        <div>
+        <div class="divChangeStatus">
             <a class="changeStatus" th:href="@{/todo/update/{id}(id=${todo.getId()})}">Change status</a>
         </div>
             <a href="#" class="linkBack" th:href="${'/todo'}">Retour</a>
